@@ -20,6 +20,35 @@ with (subset(airquality, Month == 5), points (Wind, Ozone, col="blue", pch=8))
 with (subset(airquality, Month != 5), points (Wind, Ozone, col = "red", pch=8))
 legend ("topright", pch=8, col = c("blue", "red"), legend = c("May", "Other Months"))
 
+#Work on histograms some more.
+BMI = rnorm (n=100, mean=24.2, sd=2.2)
+BMI
+hist (BMI)
+
+#Info about the histogram data, how many breaks do we have in the data
+#what is the density, how many counts, xname, yname.
+histinfo = hist(BMI)
+histinfo
+
+#intrducing breaks in the hist function
+hist(x=BMI, breaks=20, main = "with 20 Breaks")
+hist(x=BMI, breaks=5, main = "with 5 Breaks")
+
+#breaks with a vector, that we got from the histinfo function.
+hist(x=BMI, breaks=c(16,18,20,22,24,26,28,30,32), main = "Vector breaks")
+hist (x=BMI, breaks=seq(16,32, by=3), main = "with Seq")
+
+hist(x=BMI, freq=FALSE, main = "Density plot")
+
+
+hist (x=BMI, freq=FALSE, xlab = "Body MASS Index", ylab = "Density", main = "Distribution of BMI", 
+      col = "lightgreen", xlim = c(15,35), ylim = c(0,0.20)
+      )
+
+#Having a density graph curve on the histogram
+curve(dnorm(x, mean=mean(BMI), sd=sd(BMI)), add=TRUE, col="darkblue", lwd=2) 
+
+
 #Base plot with a Regression Line
 par(mfrow=c(1,1))
 with (airquality, plot (Wind, Ozone, main = " Ozone in Newyork City", pch =8, col="black"))
